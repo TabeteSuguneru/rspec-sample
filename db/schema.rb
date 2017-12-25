@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(version: 20171225002652) do
   end
 
   create_table "phones", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "contact_id"
     t.string "phone"
     t.string "phone_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_phones_on_contact_id"
   end
 
 end
