@@ -59,4 +59,26 @@ RSpec.describe Contact, type: :model do
     )
     expect(contact.name).to eq 'John Doe'
   end
+
+  # マッチしなかったものは結果に含まれないこと
+  it "omits results that do not match" do
+    smith = Contact.create(
+      firstname: 'John',
+      lastname: 'Smith',
+      email: 'jsmith@example.com'
+    )
+
+    jones = Contact.create(
+      firstname: 'Tim',
+      lastname: 'Jones',
+      email: 'tjones@example.com'
+    )
+    johnson = Contact.create(
+      firstname: 'John',
+      lastname: 'Johnson',
+      email: 'jjohnson@example.com'
+    )
+
+    expect(Contact.by_letter("J")).not_to include smith
+  end
 end
