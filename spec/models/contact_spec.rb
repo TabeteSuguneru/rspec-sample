@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Contact, type: :model do
   # 有効なファクトリを持つこと
   it "has a valid factory" do
-    expect(FactoryGirl.build(:contact)).to be_valid
+    expect(build(:contact)).to be_valid
   end
 
   # 姓と名とメールアドレスがあれば有効な状態であること
@@ -18,28 +18,28 @@ RSpec.describe Contact, type: :model do
 
   # 名がなければ無効な状態であること
   it "is invalid without a firstname" do
-    contact = FactoryGirl.build(:contact, firstname: nil)
+    contact = build(:contact, firstname: nil)
     contact.valid?
     expect(contact.errors[:firstname]).to include("can't be blank")
   end
 
   # 姓がなければ無効な状態であること
   it "is invalid without a lastname" do
-    contact = FactoryGirl.build(:contact, lastname: nil)
+    contact = build(:contact, lastname: nil)
     contact.valid?
     expect(contact.errors[:lastname]).to include("can't be blank")
   end
 
   # メールアドレスがなければ無効な状態であること
   it "is invalid without a email address" do
-    contact = FactoryGirl.build(:contact, email: nil)
+    contact = build(:contact, email: nil)
     contact.valid?
     expect(contact.errors[:email]).to include("can't be blank")
   end
 
   # 連絡先のフルネームを文字列として返すこと
   it "returns a contact's full name as astring" do
-    contact = FactoryGirl.build(:contact,
+    contact = build(:contact,
       firstname: "Jane",
       lastname: "Smith"
     )
@@ -48,8 +48,8 @@ RSpec.describe Contact, type: :model do
 
   # 重複したメールアドレスなら無効な状態であること
   it "is invalid with a duplicate email address" do
-    FactoryGirl.create(:contact, email: 'aaron@example.com')
-    contact = FactoryGirl.build(:contact, email: 'aaron@example.com')
+    create(:contact, email: 'aaron@example.com')
+    contact = build(:contact, email: 'aaron@example.com')
     contact.valid?
     expect(contact.errors[:email]).to include("has already been taken")
   end
