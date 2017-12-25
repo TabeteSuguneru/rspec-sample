@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
+  # 有効なファクトリを持つこと
+  it "has a valid factory" do
+    expect(FactoryGirl.build(:contact)).to be_valid
+  end
+
   # 姓と名とメールアドレスがあれば有効な状態であること
   it "it valid with a firstname, lstname and email" do
     contact = Contact.new(
