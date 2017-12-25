@@ -2,7 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
   # 姓と名とメールアドレスがあれば有効な状態であること
-  it "it valid with a firstname, lstname and email"
+  it "it valid with a firstname, lstname and email" do
+    contact = Contact.new(
+      firstname: 'Aaron',
+      lastname: 'Sumner',
+      email: 'tester@example.com'
+    )
+    expect(contact).to be_valid
+  end
+
 
   # 名がなければ無効な状態であること
   it "is invalid without a firstname"
