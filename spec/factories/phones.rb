@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :phone do
     association :contact
     phone { Faker::PhoneNumber.phone_number}
