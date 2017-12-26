@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Getting started
 
-Things you may want to cover:
+1.clone
+```
+$ git clone git@github.com:YumaKimura/rspec-sample.git
+```
+2.start doker
+```
+$ docker-compose up -d
+```
+3.database migrations
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ docker exec -it [container name] /bin/bash
+$ rake db:create
+$ rake db:migrate
+```
